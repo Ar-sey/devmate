@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Travel Smart</title>
+  <link rel="stylesheet" href="devmate.css">
+</head>
+<body>
+  <h2>Trace the arrow</h2>
+  <div style="position: relative; display: inline-block;">
+    <canvas id="arrowCanvas" width="300" height="300" style="border:2px solid #000; background-color: #f0f9ff;"></canvas>
+    <div style="position: absolute; top: 0; left: 0; width: 300px; height: 300px; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+      <span style="font-size: 150px; color: rgba(0,0,0,0.1); font-weight: bold;">→</span>
+    </div>
+  </div>
+  <p id="arrowResult"></p>
+  <audio id="arrowSuccessSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_6e3785bfb3.mp3"></audio>
+
+  <br>
+  <a href="learning.html" style="display: inline-block; margin-top: 20px; font-size: 18px; text-decoration: none; background-color: #ffcc00; padding: 10px 20px; border-radius: 10px; color: black; font-weight: bold;">⬅ Back to Learning Games</a>
+
+  <script>
+    const arrowCanvas = document.getElementById('arrowCanvas');
+    const arrowCtx = arrowCanvas.getContext('2d');
+    let drawing = false;
+    let hasDrawn = false;
+
+    arrowCanvas.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      drawing = true;
+      hasDrawn = false;
+    });
+
+    arrowCanvas.addEventListener('mouseup', (e) => {
+      e.preventDefault();
+      drawing = false;
+      if (hasDrawn) {
+        document.getElementById('arrowResult').textContent = '🎉 CONGRATULATIONS';
+        document.getElementById('arrowSuccessSound').play();
+      }
+    });
+
+    arrowCanvas.addEventListener('mousemove', (e) => {
+      if (!drawing) return;
+      hasDrawn = true;
+      arrowCtx.fillStyle = 'blue';
+      arrowCtx.beginPath();
+      arrowCtx.arc(e.offsetX, e.offsetY, 5, 0, Math.PI * 2);
+      arrowCtx.fill();
+    });
+  </script>
+</body>
+</html>

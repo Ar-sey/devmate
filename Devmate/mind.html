@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mind Explorers</title>
+  <link rel="stylesheet" href="devmate.css">
+</head>
+<body>
+  <a href="learning.html" style="display: inline-block; margin: 10px 0; font-size: 18px; text-decoration: none; background-color: #ffcc00; padding: 10px 20px; border-radius: 10px; color: black; font-weight: bold;">⬅ Back to Learning Games</a>
+
+  <h2>What color is the heart?</h2>
+  <div class="heart" style="font-size: 100px; text-align: center;">❤️</div>
+  <div class="color-choices" style="text-align: center; margin-top: 20px;">
+    <button onclick="checkColor('blue')" style="background-color: blue; width: 50px; height: 50px; border-radius: 10px; border: none;"></button>
+    <button onclick="checkColor('green')" style="background-color: green; width: 50px; height: 50px; border-radius: 10px; border: none;"></button>
+    <button onclick="checkColor('red')" style="background-color: red; width: 50px; height: 50px; border-radius: 10px; border: none;"></button>
+    <button onclick="checkColor('yellow')" style="background-color: yellow; width: 50px; height: 50px; border-radius: 10px; border: none;"></button>
+  </div>
+  
+  
+  <p id="colorResult" style="text-align: center; font-size: 20px;"></p>
+
+  <audio id="correctSound" src="https://cdn.pixabay.com/audio/2022/10/10/audio_b1a70a1e04.mp3"></audio>
+  <audio id="wrongSound" src="https://cdn.pixabay.com/audio/2022/03/26/audio_92ba7f9033.mp3"></audio>
+
+  <script>
+    function checkColor(color) {
+      const correctSound = document.getElementById('correctSound');
+      const wrongSound = document.getElementById('wrongSound');
+
+      if (color === 'red') {
+        document.getElementById('colorResult').textContent = '🎉 CONGRATULATIONS!';
+        correctSound.play();
+        setTimeout(() => {
+          window.location.href = 'trace-a.html';
+        }, 1500);
+      } else {
+        document.getElementById('colorResult').textContent = 'Try Again!';
+        wrongSound.play();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>Trace the Letter A</title>
+  <link rel="stylesheet" href="devmate.css">
+</head>
+<body>
+  <h2>Trace the Letter A</h2>
+  <p>Try tracing the letter A using your mouse or finger!</p>
+  <div style="position: relative; display: inline-block;">
+    <canvas id="traceCanvas" width="300" height="300" style="border:2px solid #000; background-color: #fff0f5;"></canvas>
+    <div style="position: absolute; top: 0; left: 0; width: 300px; height: 300px; display: flex; align-items: center; justify-content: center; pointer-events: none;">
+      <span style="font-size: 200px; color: rgba(0,0,0,0.1); font-weight: bold;">A</span>
+    </div>
+  </div>
+  <p id="traceMessage"></p>
+  <audio id="traceSuccessSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_6e3785bfb3.mp3"></audio>
+
+  <script>
+    const canvas = document.getElementById('traceCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    let hasDrawn = false;
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('touchstart', startDraw);
+
+    canvas.addEventListener('mouseup', stopDraw);
+    canvas.addEventListener('touchend', stopDraw);
+
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('touchmove', draw);
+
+    function startDraw(e) {
+      e.preventDefault();
+      drawing = true;
+      hasDrawn = false;
+    }
+
+    function stopDraw(e) {
+      e.preventDefault();
+      drawing = false;
+      if (hasDrawn) {
+        document.getElementById('traceMessage').textContent = 'Congratulations!';
+        document.getElementById('traceSuccessSound').play();
+      }
+    }
+
+    function draw(e) {
+      if (!drawing) return;
+      e.preventDefault();
+      hasDrawn = true;
+      let x = e.offsetX || e.touches[0].clientX - canvas.offsetLeft;
+      let y = e.offsetY || e.touches[0].clientY - canvas.offsetTop;
+
+      ctx.fillStyle = '#000';
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Daily Life Skills</title>
+  <link rel="stylesheet" href="devmate.css">
+</head>
+<body>
+  <h2>Which is 1 Peso?</h2>
+  <img src="1 peso.jpeg" width="100" alt="1 Peso Coin">
+  <div class="choices">
+    <button onclick="checkPeso(1)">1 Peso</button>
+    <button onclick="checkPeso(2)">2 Peso</button>
+    <button onclick="checkPeso(3)">3 Peso</button>
+    <button onclick="checkPeso(4)">4 Peso</button>
+  </div>
+  <p id="pesoResult"></p>
+
+  <script>
+    function checkPeso(value) {
+      if (value === 1) {
+        document.getElementById('pesoResult').textContent = '🎉 CONGRATULATIONS!';
+      } else {
+        document.getElementById('pesoResult').textContent = 'Oops, try again!';
+      }
+    }
+  </script>
+</body>
+</html>

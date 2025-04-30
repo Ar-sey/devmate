@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevMate Dashboard</title>
+  <link rel="stylesheet" href="devmate.css">
+</head>
+<body>
+  <div class="dashboard">
+    <a href="home.html" style="font-size: 24px; text-decoration: none; display: inline-block; margin-bottom: 10px;">⬅ Back</a>
+    <h1>Hello, <span id="userDisplay"></span>!</h1>
+    <div class="options">
+      <a href="myprocess.html" class="card">MY PROCESS</a>
+      <a href="learning.html" class="card">LEARNING GAMES</a>
+      <a href="rewards.html" class="card">REWARDS</a>
+      <a href="routine.html" class="card">ROUTINE</a>
+    </div>
+  </div>
+  <script>
+    document.getElementById('userDisplay').textContent = localStorage.getItem('username') || 'Guest';
+  </script>
+</body>
+</html>
